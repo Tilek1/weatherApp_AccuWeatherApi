@@ -1,31 +1,27 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import { BrowserRouter, Route } from 'react-router-dom'
 
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+import Post from './components/Post'
 
-import Navbar from './components/layout/Navbar'
-import Index from './components/layout/Index'
-import ContextProvider from './Context';
-
-class App extends React.Component {
+class App extends Component {
 
   render() {
     return (
-      <ContextProvider>
-      <Router>
-        <React.Fragment>
-           <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Index} />
-            </Switch>
+        <BrowserRouter>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/:post_id" component={Post} />
           </div>
-        </React.Fragment>
-      </Router>
-      </ContextProvider>
+        </BrowserRouter>
     )
   }
 }
-
 
 export default App;
